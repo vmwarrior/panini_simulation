@@ -1,2 +1,44 @@
-# panini_simulation
-Determines how many packets of stickers are needed to complete the album
+# 2026 FIFA World Cup Panini Album Simulation
+
+This project contains a Monte Carlo simulation to estimate the cost and effort required to complete a 980-sticker Panini album.
+
+## Simulation Assumptions
+
+- **Album Size:** 980 unique stickers.
+- **Packet Composition:** 7 stickers per packet.
+- **No Internal Duplicates:** A single packet will never contain the same sticker twice.
+- **Random Distribution:** Stickers are distributed randomly across all packets with equal probability.
+- **Purchasing:** Packets are purchased in bundles of 25 for $50.00, resulting in a unit cost of **$2.00 per packet**.
+- **No External Market:** The simulation assumes stickers can only be acquired via packet purchases or direct one-for-one trading (if enabled).
+
+## Trading Logic
+
+The simulation compares two scenarios:
+
+1.  **No Trading:** The collector relies entirely on buying packets until the album is complete.
+2.  **With Trading:** 
+    *   Trading is attempted after each bundle of 25 packets is opened.
+    *   For every missing sticker in the album, there is a probability **p** of successfully trading a duplicate for it.
+    *   **Probability Formula:** `p = D / (D + N)`, where `D` is the number of duplicates currently held and `N` is the total album size (980).
+    *   Each successful trade consumes one duplicate sticker.
+
+## Simulation Results (n=1000 iterations)
+
+| Scenario | Metric | Mean | Median | 95% Confidence Interval |
+| :--- | :--- | :--- | :--- | :--- |
+| **No Trading** | Packets | ~1,046 | ~1,020 | 790 – 1,514 |
+| | **Cost** | **$2,092** | **$2,039** | **$1,580 – $3,028** |
+| **With Trading** | Packets | ~346 | ~350 | 300 – 425 |
+| | **Cost** | **$692** | **$700** | **$600 – $850** |
+
+### Key Findings
+- **Trading Savings:** Trading reduces the average cost to complete the album by approximately **67%** (a savings of ~$1,400).
+- **Reduced Variance:** Trading significantly increases the predictability of the cost. The 95% Confidence Interval shrinks from a $1,448 range to just a $250 range.
+
+## How to Run
+
+To run the simulation yourself, ensure you have Python installed and execute:
+
+```bash
+python panini_simulation.py
+```
