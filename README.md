@@ -24,6 +24,8 @@ The simulation compares two scenarios:
 
 ## Simulation Results (n=1000 iterations)
 
+### Single Album (Baseline)
+
 | Scenario | Metric | Mean | Median | 95% Confidence Interval |
 | :--- | :--- | :--- | :--- | :--- |
 | **No Trading** | Packets | ~1,046 | ~1,020 | 790 – 1,514 |
@@ -31,8 +33,20 @@ The simulation compares two scenarios:
 | **With Trading** | Packets | ~346 | ~350 | 300 – 425 |
 | | **Cost** | **$692** | **$700** | **$600 – $850** |
 
+### Multi-Album Efficiency (10 Albums)
+
+Collecting multiple albums simultaneously is significantly more efficient per album because stickers are only considered "duplicates" once you have more than the number of albums you are filling.
+
+| Scenario | Metric | Per Album (Mean) | Total (Mean) | Total Cost |
+| :--- | :--- | :--- | :--- | :--- |
+| **No Trading** | Packets | ~328 | 3,285 | **$6,570** |
+| **With Trading** | Packets | ~147 | 1,471 | **$2,942** |
+
+**Key Insight:** By collecting 10 albums at once, the cost per album drops by **~68%** in the No Trading scenario (from ~$2,092 to ~$657).
+
 ### Key Findings
-- **Trading Savings:** Trading reduces the average cost to complete the album by approximately **67%** (a savings of ~$1,400).
+- **Trading Savings:** Trading reduces the average cost to complete the album by approximately **67%** (a savings of ~$1,400 per single album).
+- **Bulk Efficiency:** Collecting in bulk (e.g., 10 albums) is nearly as effective as trading for reducing per-album costs, as it minimizes "wasted" stickers.
 - **Reduced Variance:** Trading significantly increases the predictability of the cost. The 95% Confidence Interval shrinks from a $1,448 range to just a $250 range.
 
 ## How to Run
