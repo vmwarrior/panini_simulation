@@ -49,10 +49,35 @@ Collecting multiple albums simultaneously is significantly more efficient per al
 - **Bulk Efficiency:** Collecting in bulk (e.g., 10 albums) is nearly as effective as trading for reducing per-album costs, as it minimizes "wasted" stickers.
 - **Reduced Variance:** Trading significantly increases the predictability of the cost. The 95% Confidence Interval shrinks from a $1,448 range to just a $250 range.
 
+## Installation
+
+To run this simulation, it is recommended to use a virtual environment.
+
+1.  **Clone the repository** (if you haven't already).
+2.  **Create and activate a virtual environment:**
+    ```bash
+    python -m venv .venv
+    # Windows:
+    .venv\Scripts\activate
+    # Linux/Mac:
+    source .venv/bin/activate
+    ```
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
 ## How to Run
 
-To run the simulation yourself, ensure you have Python installed and execute:
-
+### Main Simulation
+To run the primary statistical comparison (default: 10 albums, 1000 simulations):
 ```bash
 python panini_simulation.py
 ```
+
+### Multi-Album Analysis & Plotting
+To analyze the cost per album across a range (e.g., 1 to 50 albums) and generate a visualization:
+```bash
+python plot_optimal_albums.py
+```
+This will generate a plot named `cost_per_album_plot.png` in the project directory.
