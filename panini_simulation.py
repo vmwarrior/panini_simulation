@@ -1,14 +1,14 @@
 import random
 import statistics
 
-# Constants
+# Constants (Mexican Market)
 TOTAL_STICKERS = 980
 STICKERS_PER_PACKET = 7
-PACKETS_PER_BUNDLE = 25
-BUNDLE_COST = 50.0
+PACKETS_PER_BUNDLE = 100  # 100 packets per box
+BUNDLE_COST = 2500.0      # 2500 Pesos per box
 COST_PER_PACKET = BUNDLE_COST / PACKETS_PER_BUNDLE
 NUM_SIMULATIONS = 1000
-NUM_ALBUMS = 10
+NUM_ALBUMS = 1
 
 def simulate_no_trading(num_albums=1):
     owned_counts = [0] * TOTAL_STICKERS
@@ -125,9 +125,6 @@ def main():
     
     savings = (stats_no['avg_cost'] - stats_yes['avg_cost']) / NUM_ALBUMS
     print(f"Estimated Average Savings from Trading (per album): ${savings:.2f}")
-    
-    # Compare with 1-album baseline (approximate from README)
-    print("\nNote: For 1 album, 'No Trading' cost was ~$2,092. Collecting 10 at once reduces this significantly per album.")
 
 if __name__ == "__main__":
     main()
